@@ -1,0 +1,47 @@
+apply plugin: 'com.github.ben-manes.versions'
+
+buildscript {
+    ext.versions = [
+            'kotlin': '1.2.71',
+    ]
+
+    ext.deps = [
+            'dagger2': 'com.google.dagger:dagger:2.16',
+            'dagger2Compiler': 'com.google.dagger:dagger-compiler:2.16',
+            'autoService': 'com.google.auto.service:auto-service:1.0-rc4',
+            'autoCommon': 'com.google.auto:auto-common:0.10',
+            'junit': 'junit:junit:4.12',
+            'truth': 'com.google.truth:truth:0.42',
+            'kotlin': "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}",
+            'javaPoet': 'com.squareup:javapoet:1.11.1',
+            'guava': 'com.google.guava:guava:26.0-jre',
+            'compileTesting': 'com.google.testing.compile:compile-testing:0.15',
+            'inject': 'javax.inject:javax.inject:1',
+            'ktlint': 'com.github.shyiko:ktlint:0.29.0',
+    ]
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.20.0'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+        classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.7.5'
+        classpath 'org.jetbrains.dokka:dokka-gradle-plugin:0.9.17'
+    }
+
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+subprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

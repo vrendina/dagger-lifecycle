@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+apply from: '../gradle/common.gradle'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.victorrendina.dagger2.lifecycle.sample"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+}
+
+// Dagger will not inject generated classes without this flag.
+kapt {
+    correctErrorTypes = true
+}
+
+dependencies {
+    implementation project(':dagger2-lifecycle')
+    kapt project(':dagger2-lifecycle-processor')
+
+    implementation deps.dagger2
+    kapt deps.dagger2Compiler
+
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.1'
+}

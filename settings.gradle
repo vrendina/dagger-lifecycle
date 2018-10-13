@@ -1,0 +1,5 @@
+rootProject.name = 'dagger-lifecycle'
+
+include ':dagger2-lifecycle-sample',
+        ':dagger2-lifecycle',
+        ':dagger2-lifecycle-processor'

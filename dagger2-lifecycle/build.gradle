@@ -1,0 +1,9 @@
+apply plugin: 'org.jetbrains.kotlin.jvm'
+apply from: '../gradle/common.gradle'
+apply from: '../gradle/publish.gradle'
+
+dependencies {
+    implementation deps.inject
+}
+
+
