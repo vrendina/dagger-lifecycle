@@ -37,7 +37,8 @@ else
   # If we are on the correct branch but don't have a release tag deploy the snapshot
   elif [ "$TRAVIS_BRANCH" == "$BRANCH" ]; then
     echo "Deploying snapshot for build ${TRAVIS_BUILD_NUMBER}..."
-    ./gradlew artifactoryPublish -x test -Dsnapshot=true -Dbintray.user=${BINTRAY_USER} -Dbintray.key=${BINTRAY_KEY} -Dbuild.number=${TRAVIS_BUILD_NUMBER}
+    # Disabled until repository is available
+    #./gradlew artifactoryPublish -x test -Dsnapshot=true -Dbintray.user=${BINTRAY_USER} -Dbintray.key=${BINTRAY_KEY} -Dbuild.number=${TRAVIS_BUILD_NUMBER}
   else
     echo "Skipping deployment: ${TRAVIS_BRANCH} was not ${BRANCH} and tag was '${TRAVIS_TAG}'"
   fi
